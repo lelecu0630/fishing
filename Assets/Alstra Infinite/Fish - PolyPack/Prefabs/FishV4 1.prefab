@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5352650476603691374}
   - component: {fileID: 4715811155127990496}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   - {fileID: 7525871767435548799}
   - {fileID: 4715811155127990496}
   m_InteractionLayers:
-    m_Bits: 1073741824
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -392,7 +392,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

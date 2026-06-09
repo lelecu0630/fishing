@@ -139,7 +139,7 @@ MonoBehaviour:
   - {fileID: 3172543814618491020}
   - {fileID: 6929112915000662291}
   m_InteractionLayers:
-    m_Bits: 1073741824
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -280,7 +280,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 2391413080316873720}
   - component: {fileID: 6929112915000662291}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5443396110568361622}
   - component: {fileID: -804247087142136052}
   m_Layer: 6
-  m_Name: fish03_shade 1
+  m_Name: fish03_shade1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 1073741824
+    m_Bits: 4294967295
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -281,7 +281,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 6607186028107600974}
   - component: {fileID: 355810041403647979}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

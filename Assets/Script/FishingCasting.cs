@@ -62,6 +62,13 @@ public class FishingCasting : MonoBehaviour
         else if (isFishBiting)
             DetectHookingMotion();
 
+        // 물고기가 매달려 있는 동안 위치를 castPoint 기준으로 매 프레임 강제 고정
+        // (isKinematic=false여도 중력에 안 떨어지도록)
+        if (hangingFish != null)
+        {
+            hangingFish.transform.position = castPoint.position + Vector3.down * (hangOffset + fishBelowBobber);
+        }
+
         if (currentBobber != null && lineRenderer != null)
         {
             lineRenderer.enabled = true;
@@ -147,59 +154,72 @@ public class FishingCasting : MonoBehaviour
 
     void SetupFishForGrab(GameObject fish, FishData selectedFish, int finalScore)
     {
-        // ── 1. Scale을 1로 리셋 ──
-        // 로그에서 Scale (19.97, 6.67, 20)으로 너무 컸음 → Collider 안에 손이 파묻혀서 Grab 불가
-        //fish.transform.localScale = Vector3.one;
-        Debug.Log($"ℹ️ [{selectedFish.fishName}] Scale을 (1,1,1)로 리셋. 인스펙터에서 적절한 크기로 조정하세요.");
+        // Scale은 프리팹 원본값 그대로 유지
 
         // ── 2. Rigidbody 세팅 ──
         Rigidbody fishRb = fish.GetComponent<Rigidbody>();
         if (fishRb == null) fishRb = fish.AddComponent<Rigidbody>();
 
-        // ★ isKinematic false → velocity 초기화 → 다시 true (kinematic 상태에서 velocity 세팅하면 에러)
+        // isKinematic=false 유지 → RayInteractor로 Grab 가능
+        // 위치는 Update()에서 매 프레임 castPoint 기준으로 강제 고정
         fishRb.isKinematic = false;
         fishRb.linearVelocity = Vector3.zero;
         fishRb.angularVelocity = Vector3.zero;
-        fishRb.isKinematic = true;
+        fishRb.useGravity = false;
         fishRb.detectCollisions = true;
 
-        // ── 3. Collider isTrigger 강제 해제 ──
+        // ── 3. 기존 Collider는 isTrigger로 변경, GrabCollider만 남김 ──
+        // 프리팹에서 이름이 'GrabCollider'인 자식 오브젝트의 Collider만 isTrigger=false 유지
+        Transform grabColTransform = fish.transform.Find("GrabCollider");
         foreach (Collider col in fish.GetComponentsInChildren<Collider>(true))
         {
-            col.isTrigger = false;
+            if (grabColTransform != null && col.transform == grabColTransform)
+                col.isTrigger = false; // Grab 전용 큐브는 물리 Collider 유지
+            else
+                col.isTrigger = true;  // 나머지는 모두 트리거로 전환
         }
 
-        // ── 4. 찌와 물고기 Collider 간 충돌 무시 ──
-        // 로그에서 Bobber가 물고기에 OnTriggerEnter 발생 → 물리 꼬임 방지
+        if (grabColTransform == null)
+            Debug.LogWarning("⚠️ 'GrabCollider' 이름의 자식 오브젝트를 찾지 못했습니다. 프리팹에서 꼬리 큐브 이름을 'GrabCollider'로 변경해 주세요.");
+
+        // ── 4. 찌와 물고기 Collider 간 충돌 무시 (GrabCollider 포함) ──
         if (hangingBobber != null)
         {
-            foreach (Collider bobberCol in hangingBobber.GetComponentsInChildren<Collider>(true))
-            {
-                foreach (Collider fishCol in fish.GetComponentsInChildren<Collider>(true))
-                {
+            Collider[] bobberCols = hangingBobber.GetComponentsInChildren<Collider>(true);
+            Collider[] fishCols = fish.GetComponentsInChildren<Collider>(true);
+            foreach (var bobberCol in bobberCols)
+                foreach (var fishCol in fishCols)
                     Physics.IgnoreCollision(bobberCol, fishCol, true);
-                }
-            }
         }
 
         // ── 5. XRGrabInteractable 세팅 ──
         XRGrabInteractable grab = fish.GetComponent<XRGrabInteractable>();
         if (grab == null) grab = fish.AddComponent<XRGrabInteractable>();
         grab.enabled = true;
-        grab.movementType = XRBaseInteractable.MovementType.Kinematic;
+        grab.movementType = XRBaseInteractable.MovementType.Instantaneous;
         grab.throwOnDetach = true;
 
-        // ★★★ 핵심 수정: InteractionLayerMask를 프리팹 원본값 그대로 유지
-        // 이전 코드에서 강제로 "Default"로 덮어써서 레이어 30번이 사라졌던 것이 원인!
-        // 컨트롤러는 InteractionLayer=-1(전체)이므로 프리팹 레이어를 건드리지 않음
-        // (아무것도 하지 않으면 프리팹의 레이어 그대로 유지됨)
+        // InteractionLayerMask를 Everything으로 설정
+        grab.interactionLayers = new InteractionLayerMask { value = unchecked((int)0xFFFFFFFF) };
 
-        // ── 6. 부모: castPoint 직접 자식으로 (찌 거치지 않음) ──
-        // 찌를 거치면 찌 Collider와 물고기 Collider가 서로 간섭
-        fish.transform.SetParent(castPoint);
-        fish.transform.localPosition = Vector3.down * (hangOffset + fishBelowBobber);
-        fish.transform.localRotation = Quaternion.identity;
-        //fish.transform.localScale = Vector3.one;
+        // ── 5-1. GrabCollider를 XRGrabInteractable Colliders 리스트에 등록 ──
+        // Colliders 리스트가 비어있으면 XRI가 루트 Collider만 탐색 → GrabCollider 인식 불가
+        if (grabColTransform != null)
+        {
+            Collider grabCol = grabColTransform.GetComponent<Collider>();
+            if (grabCol != null)
+            {
+                grab.colliders.Clear();
+                grab.colliders.Add(grabCol);
+                Debug.Log("✅ GrabCollider를 XRGrabInteractable에 등록 완료");
+            }
+        }
+
+        // ── 6. 위치 설정 (부모 설정 없이 월드 좌표로 배치) ──
+        // SetParent를 쓰면 Scale 영향 및 Collider 간섭 발생 → Update에서 위치 고정
+        fish.transform.SetParent(null);
+        fish.transform.position = castPoint.position + Vector3.down * (hangOffset + fishBelowBobber);
+        fish.transform.rotation = Quaternion.identity;
 
         // ── 7. FishScore 부착 ──
         FishScore scoreScript = fish.GetComponent<FishScore>();
@@ -211,8 +231,13 @@ public class FishingCasting : MonoBehaviour
         grab.selectEntered.AddListener((args) =>
         {
             Debug.Log($"✋ [{selectedFish.fishName}] 잡았습니다!");
-            fish.transform.SetParent(null);
-            if (fishRb != null) fishRb.isKinematic = false;
+            hangingFish = null; // Update 위치 고정 해제
+            if (fishRb != null)
+            {
+                fishRb.useGravity = true; // 잡힌 후 중력 복원
+                fishRb.linearVelocity = Vector3.zero;
+                fishRb.angularVelocity = Vector3.zero;
+            }
             if (lineRenderer != null) lineRenderer.enabled = false;
             if (hangingBobber != null) { Destroy(hangingBobber); hangingBobber = null; }
         });
