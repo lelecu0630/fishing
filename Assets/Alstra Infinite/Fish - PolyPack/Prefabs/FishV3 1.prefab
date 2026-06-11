@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 5811307509105647668}
   - component: {fileID: 292060437849939356}
   - component: {fileID: 1631881290584356182}
-  - component: {fileID: 7027064601920727295}
-  - component: {fileID: 5700384655987806589}
-  - component: {fileID: 7831672662513798840}
-  m_Layer: 6
+  - component: {fileID: 3005845781059298948}
+  m_Layer: 0
   m_Name: FishV3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 158.112, y: 17.1, z: 164.15852}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7355145208272897716}
@@ -122,7 +120,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7027064601920727295
+--- !u!114 &3005845781059298948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,11 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
-  m_Colliders:
-  - {fileID: 5700384655987806589}
-  - {fileID: 3852611514732491878}
+  m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 1
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -165,19 +161,7 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2267964506205304894}
-        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -210,7 +194,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  m_AttachTransform: {fileID: 7355145208272897716}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -218,7 +202,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -265,39 +249,6 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
---- !u!65 &5700384655987806589
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727914022832515880}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.8679533, y: 0.15870333, z: 0.07981824}
-  m_Center: {x: 0.049936008, y: -0.03918491, z: 0}
---- !u!114 &7831672662513798840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7727914022832515880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1fad278ed02249bffe93367f32c2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishGrabDiagnostic
 --- !u!1 &8750526482288156484
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +261,7 @@ GameObject:
   - component: {fileID: 8928254632009153871}
   - component: {fileID: 6812124362390718976}
   - component: {fileID: 3852611514732491878}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +278,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.265, y: -0.038, z: -0}
-  m_LocalScale: {x: 0.35376, y: 0.07189374, z: 0.049823}
+  m_LocalScale: {x: 0.52773917, y: 0.23870158, z: 0.14567249}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2267964506205304894}

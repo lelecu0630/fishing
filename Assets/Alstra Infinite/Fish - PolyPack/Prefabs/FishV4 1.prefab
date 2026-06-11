@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7337369158401072770}
   - component: {fileID: 5352650476603691374}
   - component: {fileID: 4715811155127990496}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.318, y: 0, z: 0}
-  m_LocalScale: {x: 0.23996508, y: 0.17262532, z: 0.08798411}
+  m_LocalScale: {x: 0.40935642, y: 0.57038856, z: 0.29038274}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8384326730885628389}
@@ -124,10 +124,8 @@ GameObject:
   - component: {fileID: 6105216547384381242}
   - component: {fileID: 8339697318989723197}
   - component: {fileID: 1299170668624056757}
-  - component: {fileID: 6968573237068153977}
-  - component: {fileID: 7525871767435548799}
-  - component: {fileID: -6521873544326802037}
-  m_Layer: 6
+  - component: {fileID: -4693644467878943340}
+  m_Layer: 0
   m_Name: FishV4 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +142,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 157.698, y: 17.41, z: 164.594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3964188955100918860}
@@ -234,7 +232,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6968573237068153977
+--- !u!114 &-4693644467878943340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,11 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
   m_InteractionManager: {fileID: 0}
-  m_Colliders:
-  - {fileID: 7525871767435548799}
-  - {fileID: 4715811155127990496}
+  m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 1
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -277,19 +273,7 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8384326730885628389}
-        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -322,7 +306,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  m_AttachTransform: {fileID: 3964188955100918860}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -330,7 +314,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -377,36 +361,3 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
---- !u!65 &7525871767435548799
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9168793924284454011}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.9094926, y: 0.5521255, z: 0.09662428}
-  m_Center: {x: 0.051545765, y: -0.03241834, z: 0}
---- !u!114 &-6521873544326802037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9168793924284454011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1fad278ed02249bffe93367f32c2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishGrabDiagnostic

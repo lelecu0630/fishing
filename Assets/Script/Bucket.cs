@@ -1,25 +1,44 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class Bucket : MonoBehaviour
 {
-    public int totalScore = 0; // 플레이어의 현재 점수
+    public int totalScore = 0;
+
+    [Header("점수 UI")]
+    public TextMeshProUGUI scoreText;
 
     private void OnTriggerEnter(Collider other)
     {
-        // 1. 들어온 물체가 'FishScore' 스크립트를 가지고 있는지 확인
-        FishScore caughtFish = other.GetComponent<FishScore>();
+        GameObject root = other.transform.root.gameObject;
+        FishScore caughtFish = root.GetComponentInChildren<FishScore>();
 
         if (caughtFish != null)
         {
-            // 2. 점수 합산
             totalScore += caughtFish.score;
-            Debug.Log($" 물고기 획득! [{caughtFish.fishName}] 점수: {caughtFish.score}점 추가! (총 점수: {totalScore}점)");
-
-            // 3. 물고기 제거
-            Destroy(other.gameObject);
-
-            // 여기서 효과음을 추가하면 아주 좋습니다!
-            // AudioSource.PlayClipAtPoint(splashSound, transform.position);
+            Debug.Log($"🐟 [{caughtFish.fishName}] +{caughtFish.score}점 (총 점수: {totalScore}점)");
+            UpdateScoreUIPublic();
+            Destroy(root);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject root = collision.transform.root.gameObject;
+        FishScore caughtFish = root.GetComponentInChildren<FishScore>();
+
+        if (caughtFish != null)
+        {
+            totalScore += caughtFish.score;
+            Debug.Log($"🐟 [{caughtFish.fishName}] +{caughtFish.score}점 (총 점수: {totalScore}점)");
+            UpdateScoreUIPublic();
+            Destroy(root);
+        }
+    }
+
+    public void UpdateScoreUIPublic()
+    {
+        if (scoreText != null)
+            scoreText.text = $"점수\n{totalScore}";
     }
 }

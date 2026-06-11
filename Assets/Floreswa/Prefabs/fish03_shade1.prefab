@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 3298051137226079735}
   - component: {fileID: 6816823459626187620}
   - component: {fileID: 4796798555378575935}
-  - component: {fileID: 3192879985461282634}
-  - component: {fileID: 5443396110568361622}
-  - component: {fileID: -804247087142136052}
-  m_Layer: 6
+  - component: {fileID: -5936806410844735520}
+  m_Layer: 0
   m_Name: fish03_shade1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 158.097, y: 17.153, z: 163.77}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3783274523105984623}
@@ -125,7 +123,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3192879985461282634
+--- !u!114 &-5936806410844735520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +138,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 0}
   m_Colliders: []
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 1
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_FocusMode: 1
@@ -166,19 +164,7 @@ MonoBehaviour:
       m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2899298307161664044}
-        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
-        m_MethodName: SetParent
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -211,7 +197,7 @@ MonoBehaviour:
   m_StartingInteractionStrengthFilters: []
   m_AutoFindParentInteractableInHierarchy: 0
   m_ParentInteractableObject: {fileID: 0}
-  m_AttachTransform: {fileID: 3783274523105984623}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 0
   m_MatchAttachPosition: 1
@@ -219,7 +205,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_PredictedVisualsTransform: {fileID: 0}
   m_VelocityDamping: 1
   m_VelocityScale: 1
@@ -266,39 +252,6 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
---- !u!65 &5443396110568361622
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4351085427991403445}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.4670815, y: 0.93869686, z: 2.6687107}
-  m_Center: {x: -0.00069660693, y: 0.14904583, z: 0.07745886}
---- !u!114 &-804247087142136052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4351085427991403445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1fad278ed02249bffe93367f32c2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FishGrabDiagnostic
 --- !u!1 &4381991319422349119
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +264,7 @@ GameObject:
   - component: {fileID: 1632281985930176621}
   - component: {fileID: 6607186028107600974}
   - component: {fileID: 355810041403647979}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: GrabCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +281,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.891}
-  m_LocalScale: {x: 0.25964925, y: 0.3015, z: 0.77983}
+  m_LocalScale: {x: 0.5899231, y: 0.5556042, z: 1.1701349}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2899298307161664044}
