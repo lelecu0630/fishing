@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 /// <summary>
 /// 4000점 이상 달성 시 플레이어 시점을 따라오는 클리어 UI를 표시합니다.
@@ -37,6 +38,15 @@ public class GameClearUI : MonoBehaviour
 
         // 시작 시 UI 숨기기
         if (clearCanvas != null) clearCanvas.SetActive(false);
+
+        // VR XR 컨트롤러에서 UI 상호작용을 위해 TrackedDeviceGraphicRaycaster로 교체
+        if (clearCanvas != null)
+        {
+            var gr = clearCanvas.GetComponent<GraphicRaycaster>();
+            if (gr != null) Destroy(gr);
+            if (clearCanvas.GetComponent<TrackedDeviceGraphicRaycaster>() == null)
+                clearCanvas.AddComponent<TrackedDeviceGraphicRaycaster>();
+        }
 
         // 버튼 이벤트 연결
         if (restartButton != null) restartButton.onClick.AddListener(OnRestart);
